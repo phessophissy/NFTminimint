@@ -18,8 +18,8 @@ import {
 // ============================================
 
 const CONFIG = {
-  // Contract address - UPDATE AFTER DEPLOYMENT
-  contractAddress: '0x0000000000000000000000000000000000000000',
+  // Contract address on Base Chain
+  contractAddress: '0x02B7f9205c0e9b3D51E4C473Ea2896eB25E0fbEA',
   
   // Reown Project ID - Get from https://cloud.reown.com
   projectId: 'e9132f1c6b85ec793477f0e28cbdeaba',
