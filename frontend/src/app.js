@@ -21,8 +21,8 @@ const CONFIG = {
   // V1 Contract address on Base Chain (for minting)
   contractAddress: '0x02B7f9205c0e9b3D51E4C473Ea2896eB25E0fbEA',
   
-  // V2 Contract address (marketplace) - UPDATE AFTER V2 DEPLOYMENT
-  contractAddressV2: '0x0000000000000000000000000000000000000000',
+  // V2 Contract address (marketplace)
+  contractAddressV2: '0x85F575D103e13eF7F99a03D42fD7534aEA1C4Bd0',
   
   // Reown Project ID - Get from https://cloud.reown.com
   projectId: 'e9132f1c6b85ec793477f0e28cbdeaba',

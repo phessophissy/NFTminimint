@@ -15,8 +15,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Contract V2 address - UPDATE AFTER DEPLOYMENT
-const CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000000'; // TODO: Update with V2 address
+// Contract V2 address on Base Chain
+const CONTRACT_ADDRESS = '0x85F575D103e13eF7F99a03D42fD7534aEA1C4Bd0';
 
 // Contract ABI
 const CONTRACT_ABI = [
