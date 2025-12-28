@@ -492,3 +492,264 @@ body {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* ============================================ */
+/* NAVIGATION TABS */
+/* ============================================ */
+
+.nav-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.nav-tab:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.nav-tab.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* ============================================ */
+/* TAB CONTENT */
+/* ============================================ */
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ============================================ */
+/* MARKETPLACE SECTION */
+/* ============================================ */
+
+.marketplace-section,
+.my-nfts-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Marketplace Filters */
+.marketplace-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.6rem 1.25rem;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.filter-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Marketplace & My NFTs Grid */
+.marketplace-grid,
+.my-nfts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* NFT Cards for Marketplace & My NFTs */
+.marketplace-card,
+.nft-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 2px solid var(--border);
+  transition: all 0.3s;
+}
+
+.marketplace-card:hover,
+.nft-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.marketplace-card.alpha:hover,
+.nft-card.alpha:hover {
+  border-color: var(--alpha);
+}
+
+.marketplace-card.gamma:hover,
+.nft-card.gamma:hover {
+  border-color: var(--gamma);
+}
+
+.marketplace-card.omega:hover,
+.nft-card.omega:hover {
+  border-color: var(--omega);
+}
+
+.nft-image {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.nft-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.marketplace-card:hover .nft-image img,
+.nft-card:hover .nft-image img {
+  transform: scale(1.05);
+}
+
+.nft-image .rarity-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+}
+
+.nft-info {
+  padding: 1.25rem;
+}
+
+.nft-info h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.nft-info p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.price-tag {
+  font-size: 1rem !important;
+  font-weight: 600;
+  color: var(--primary) !important;
+}
+
+.seller {
+  font-size: 0.8rem !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 1rem !important;
+}
+
+.listed-badge {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.own-listing {
+  display: block;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 0.75rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+/* Buy Button */
+.btn-buy {
+  background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+  color: white;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-hover);
+}
+
+/* Responsive adjustments for tabs */
+@media (max-width: 768px) {
+  .nav-tabs {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  
+  .nav-tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .marketplace-grid,
+  .my-nfts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  
+  .marketplace-filters {
+    flex-wrap: wrap;
+  }
+}

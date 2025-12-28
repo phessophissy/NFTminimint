@@ -1,4 +1,4 @@
-// NFTminimint - NFT Minting on Base Chain
+// NFTminimint V2 - NFT Minting & Marketplace on Base Chain
 // Using Reown AppKit for wallet connection
 
 import { createAppKit } from '@reown/appkit';
@@ -18,8 +18,11 @@ import {
 // ============================================
 
 const CONFIG = {
-  // Contract address on Base Chain
+  // V1 Contract address on Base Chain (for minting)
   contractAddress: '0x02B7f9205c0e9b3D51E4C473Ea2896eB25E0fbEA',
+  
+  // V2 Contract address (marketplace) - UPDATE AFTER V2 DEPLOYMENT
+  contractAddressV2: '0x0000000000000000000000000000000000000000',
   
   // Reown Project ID - Get from https://cloud.reown.com
   projectId: 'e9132f1c6b85ec793477f0e28cbdeaba',
@@ -28,7 +31,8 @@ const CONFIG = {
   prices: {
     alpha: '0.00005',
     gamma: '0.00006',
-    omega: '0.00007'
+    omega: '0.00007',
+    marketplace: '0.00002'
   },
   
   // Max supplies
@@ -42,7 +46,7 @@ const CONFIG = {
   rarityNames: ['Alpha', 'Gamma', 'Omega']
 };
 
-// Contract ABI (simplified for minting)
+// V1 Contract ABI (for minting)
 const CONTRACT_ABI = [
   {
     "inputs": [{ "internalType": "enum NFTminimint.Rarity", "name": "rarity", "type": "uint8" }],
@@ -92,6 +96,36 @@ const CONTRACT_ABI = [
   }
 ];
 
+// V2 Contract ABI (for marketplace)
+const CONTRACT_ABI_V2 = [
+  // Minting functions
+  "function mintAlpha() external payable returns (uint256)",
+  "function mintGamma() external payable returns (uint256)",
+  "function mintOmega() external payable returns (uint256)",
+  
+  // Marketplace functions
+  "function listNFT(uint256 tokenId) external",
+  "function listNFTWithPrice(uint256 tokenId, uint256 price) external",
+  "function buyNFT(uint256 tokenId) external payable",
+  "function cancelListing(uint256 tokenId) external",
+  
+  // View functions
+  "function getListing(uint256 tokenId) external view returns (address seller, uint256 price, bool active)",
+  "function getNFTDetails(uint256 tokenId) external view returns (address owner, uint8 rarity, uint256 mintedAt, bool isListed, uint256 listingPrice)",
+  "function getActiveListings() external view returns (uint256[] tokenIds, address[] sellers, uint256[] prices)",
+  "function getNFTsByOwner(address owner) external view returns (uint256[])",
+  "function getRarityName(uint256 tokenId) external view returns (string)",
+  "function getTotalMinted() external view returns (uint256)",
+  "function getMintStats() external view returns (uint256 totalMinted, uint256 alphaCount, uint256 gammaCount, uint256 omegaCount)",
+  "function ownerOf(uint256 tokenId) external view returns (address)",
+  
+  // Constants
+  "function ALPHA_PRICE() external view returns (uint256)",
+  "function GAMMA_PRICE() external view returns (uint256)",
+  "function OMEGA_PRICE() external view returns (uint256)",
+  "function MARKETPLACE_PRICE() external view returns (uint256)"
+];
+
 // ============================================
 // STATE
 // ============================================
@@ -101,7 +135,11 @@ let state = {
   address: null,
   appKit: null,
   wagmiConfig: null,
-  recentMints: []
+  recentMints: [],
+  activeTab: 'mint',
+  myNFTs: [],
+  marketplaceListings: [],
+  marketplaceFilter: 'all'
 };
 
 // ============================================
@@ -149,6 +187,8 @@ function initializeAppKit() {
       updateWalletUI();
       if (account.isConnected) {
         loadContractData();
+        loadMyNFTs();
+        loadMarketplaceListings();
       }
     }
   });
@@ -319,6 +359,363 @@ async function mintNFT(rarity) {
 window.mintNFT = mintNFT;
 
 // ============================================
+// MARKETPLACE FUNCTIONS
+// ============================================
+
+// Load user's NFTs
+async function loadMyNFTs() {
+  if (!state.connected || !state.address) {
+    renderMyNFTs();
+    return;
+  }
+
+  const contractAddr = CONFIG.contractAddressV2 !== '0x0000000000000000000000000000000000000000' 
+    ? CONFIG.contractAddressV2 
+    : null;
+
+  if (!contractAddr) {
+    // Placeholder data for demo
+    state.myNFTs = [];
+    renderMyNFTs();
+    return;
+  }
+
+  try {
+    const tokenIds = await readContract(state.wagmiConfig, {
+      address: contractAddr,
+      abi: CONTRACT_ABI_V2,
+      functionName: 'getNFTsByOwner',
+      args: [state.address]
+    });
+
+    state.myNFTs = [];
+    for (const tokenId of tokenIds) {
+      const [owner, rarity, mintedAt, isListed, listingPrice] = await readContract(state.wagmiConfig, {
+        address: contractAddr,
+        abi: CONTRACT_ABI_V2,
+        functionName: 'getNFTDetails',
+        args: [tokenId]
+      });
+
+      state.myNFTs.push({
+        tokenId: Number(tokenId),
+        rarity: Number(rarity),
+        rarityName: CONFIG.rarityNames[Number(rarity)],
+        isListed,
+        listingPrice: listingPrice ? Number(listingPrice) / 1e18 : 0
+      });
+    }
+
+    renderMyNFTs();
+  } catch (error) {
+    console.error('Failed to load NFTs:', error);
+    state.myNFTs = [];
+    renderMyNFTs();
+  }
+}
+
+// Render user's NFTs
+function renderMyNFTs() {
+  const container = document.getElementById('myNftsGrid');
+  
+  if (!state.connected) {
+    container.innerHTML = '<p class="empty-state">Connect wallet to see your NFTs.</p>';
+    return;
+  }
+
+  if (state.myNFTs.length === 0) {
+    container.innerHTML = '<p class="empty-state">You don\'t own any NFTs yet. Mint some!</p>';
+    return;
+  }
+
+  const icons = { Alpha: '🟢', Gamma: '🟣', Omega: '🟠' };
+  const colors = { Alpha: 'alpha', Gamma: 'gamma', Omega: 'omega' };
+
+  container.innerHTML = state.myNFTs.map(nft => `
+    <div class="nft-card ${colors[nft.rarityName]}">
+      <div class="nft-image">
+        <img src="https://picsum.photos/seed/${nft.rarityName.toLowerCase()}${nft.tokenId}/200/200" alt="NFT #${nft.tokenId}">
+        <span class="rarity-badge ${colors[nft.rarityName]}">${nft.rarityName}</span>
+      </div>
+      <div class="nft-info">
+        <h4>Token #${nft.tokenId}</h4>
+        <p>${icons[nft.rarityName]} ${nft.rarityName}</p>
+        ${nft.isListed 
+          ? `<p class="listed-badge">🏷️ Listed at ${nft.listingPrice} ETH</p>
+             <button class="btn btn-secondary" onclick="cancelListing(${nft.tokenId})">Cancel Listing</button>`
+          : `<button class="btn btn-primary" onclick="listNFT(${nft.tokenId})">List for Sale</button>`
+        }
+      </div>
+    </div>
+  `).join('');
+}
+
+// Load marketplace listings
+async function loadMarketplaceListings() {
+  const contractAddr = CONFIG.contractAddressV2 !== '0x0000000000000000000000000000000000000000' 
+    ? CONFIG.contractAddressV2 
+    : null;
+
+  if (!contractAddr) {
+    // Placeholder for demo
+    state.marketplaceListings = [];
+    document.getElementById('totalListed').textContent = '0';
+    renderMarketplace();
+    return;
+  }
+
+  try {
+    const [tokenIds, sellers, prices] = await readContract(state.wagmiConfig, {
+      address: contractAddr,
+      abi: CONTRACT_ABI_V2,
+      functionName: 'getActiveListings'
+    });
+
+    state.marketplaceListings = [];
+    for (let i = 0; i < tokenIds.length; i++) {
+      const rarityName = await readContract(state.wagmiConfig, {
+        address: contractAddr,
+        abi: CONTRACT_ABI_V2,
+        functionName: 'getRarityName',
+        args: [tokenIds[i]]
+      });
+
+      state.marketplaceListings.push({
+        tokenId: Number(tokenIds[i]),
+        seller: sellers[i],
+        price: Number(prices[i]) / 1e18,
+        rarityName,
+        rarity: CONFIG.rarityNames.indexOf(rarityName)
+      });
+    }
+
+    document.getElementById('totalListed').textContent = state.marketplaceListings.length;
+    renderMarketplace();
+  } catch (error) {
+    console.error('Failed to load listings:', error);
+    state.marketplaceListings = [];
+    renderMarketplace();
+  }
+}
+
+// Render marketplace
+function renderMarketplace() {
+  const container = document.getElementById('marketplaceGrid');
+  
+  let listings = state.marketplaceListings;
+  if (state.marketplaceFilter !== 'all') {
+    listings = listings.filter(l => l.rarity === state.marketplaceFilter);
+  }
+
+  if (listings.length === 0) {
+    container.innerHTML = '<p class="empty-state">No NFTs listed for sale yet.</p>';
+    return;
+  }
+
+  const icons = { Alpha: '🟢', Gamma: '🟣', Omega: '🟠' };
+  const colors = { Alpha: 'alpha', Gamma: 'gamma', Omega: 'omega' };
+
+  container.innerHTML = listings.map(nft => `
+    <div class="marketplace-card ${colors[nft.rarityName]}">
+      <div class="nft-image">
+        <img src="https://picsum.photos/seed/${nft.rarityName.toLowerCase()}${nft.tokenId}/200/200" alt="NFT #${nft.tokenId}">
+        <span class="rarity-badge ${colors[nft.rarityName]}">${nft.rarityName}</span>
+      </div>
+      <div class="nft-info">
+        <h4>Token #${nft.tokenId}</h4>
+        <p>${icons[nft.rarityName]} ${nft.rarityName}</p>
+        <p class="price-tag">💰 ${nft.price} ETH</p>
+        <p class="seller">Seller: ${nft.seller.slice(0,6)}...${nft.seller.slice(-4)}</p>
+        ${state.address?.toLowerCase() !== nft.seller.toLowerCase() 
+          ? `<button class="btn btn-buy" onclick="buyNFT(${nft.tokenId})">Buy Now</button>`
+          : `<span class="own-listing">Your listing</span>`
+        }
+      </div>
+    </div>
+  `).join('');
+}
+
+// List an NFT for sale
+async function listNFT(tokenId) {
+  if (!state.connected) {
+    showToast('Please connect your wallet first', 'error');
+    return;
+  }
+
+  const contractAddr = CONFIG.contractAddressV2;
+  if (contractAddr === '0x0000000000000000000000000000000000000000') {
+    showToast('Marketplace contract not deployed yet', 'error');
+    return;
+  }
+
+  try {
+    showToast(`Listing NFT #${tokenId} for 0.00002 ETH...`, 'info');
+
+    const hash = await writeContract(state.wagmiConfig, {
+      address: contractAddr,
+      abi: CONTRACT_ABI_V2,
+      functionName: 'listNFT',
+      args: [BigInt(tokenId)]
+    });
+
+    showToast('Transaction submitted! Waiting for confirmation...', 'success');
+
+    const receipt = await waitForTransactionReceipt(state.wagmiConfig, { hash });
+
+    if (receipt.status === 'success') {
+      showToast(`🎉 NFT #${tokenId} listed successfully!`, 'success');
+      await loadMyNFTs();
+      await loadMarketplaceListings();
+    } else {
+      showToast('Transaction failed', 'error');
+    }
+  } catch (error) {
+    console.error('List error:', error);
+    showToast(`Failed to list: ${error.shortMessage || error.message}`, 'error');
+  }
+}
+
+// Buy an NFT from marketplace
+async function buyNFT(tokenId) {
+  if (!state.connected) {
+    showToast('Please connect your wallet first', 'error');
+    return;
+  }
+
+  const contractAddr = CONFIG.contractAddressV2;
+  if (contractAddr === '0x0000000000000000000000000000000000000000') {
+    showToast('Marketplace contract not deployed yet', 'error');
+    return;
+  }
+
+  const listing = state.marketplaceListings.find(l => l.tokenId === tokenId);
+  if (!listing) {
+    showToast('Listing not found', 'error');
+    return;
+  }
+
+  try {
+    showToast(`Buying NFT #${tokenId} for ${listing.price} ETH...`, 'info');
+
+    const priceWei = BigInt(Math.floor(listing.price * 1e18));
+
+    const hash = await writeContract(state.wagmiConfig, {
+      address: contractAddr,
+      abi: CONTRACT_ABI_V2,
+      functionName: 'buyNFT',
+      args: [BigInt(tokenId)],
+      value: priceWei
+    });
+
+    showToast('Transaction submitted! Waiting for confirmation...', 'success');
+
+    const receipt = await waitForTransactionReceipt(state.wagmiConfig, { hash });
+
+    if (receipt.status === 'success') {
+      showToast(`🎉 You bought NFT #${tokenId}!`, 'success');
+      await loadMyNFTs();
+      await loadMarketplaceListings();
+    } else {
+      showToast('Transaction failed', 'error');
+    }
+  } catch (error) {
+    console.error('Buy error:', error);
+    showToast(`Failed to buy: ${error.shortMessage || error.message}`, 'error');
+  }
+}
+
+// Cancel a listing
+async function cancelListing(tokenId) {
+  if (!state.connected) {
+    showToast('Please connect your wallet first', 'error');
+    return;
+  }
+
+  const contractAddr = CONFIG.contractAddressV2;
+  if (contractAddr === '0x0000000000000000000000000000000000000000') {
+    showToast('Marketplace contract not deployed yet', 'error');
+    return;
+  }
+
+  try {
+    showToast(`Cancelling listing for NFT #${tokenId}...`, 'info');
+
+    const hash = await writeContract(state.wagmiConfig, {
+      address: contractAddr,
+      abi: CONTRACT_ABI_V2,
+      functionName: 'cancelListing',
+      args: [BigInt(tokenId)]
+    });
+
+    showToast('Transaction submitted! Waiting for confirmation...', 'success');
+
+    const receipt = await waitForTransactionReceipt(state.wagmiConfig, { hash });
+
+    if (receipt.status === 'success') {
+      showToast(`✅ Listing cancelled for NFT #${tokenId}`, 'success');
+      await loadMyNFTs();
+      await loadMarketplaceListings();
+    } else {
+      showToast('Transaction failed', 'error');
+    }
+  } catch (error) {
+    console.error('Cancel error:', error);
+    showToast(`Failed to cancel: ${error.shortMessage || error.message}`, 'error');
+  }
+}
+
+// Tab switching
+function switchTab(tab) {
+  state.activeTab = tab;
+  
+  // Update tab buttons
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === tab);
+  });
+  
+  // Update tab content
+  document.querySelectorAll('.tab-content').forEach(c => {
+    c.classList.remove('active');
+  });
+  
+  const tabContent = document.getElementById(`${tab}Tab`);
+  if (tabContent) {
+    tabContent.classList.add('active');
+  }
+
+  // Load data for the tab
+  if (tab === 'my-nfts' && state.connected) {
+    loadMyNFTs();
+  } else if (tab === 'marketplace') {
+    loadMarketplaceListings();
+  }
+}
+
+// Marketplace filter
+function filterMarketplace(filter) {
+  state.marketplaceFilter = filter;
+  
+  // Update filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', 
+      (filter === 'all' && btn.textContent === 'All') ||
+      (filter === 0 && btn.textContent === 'Alpha') ||
+      (filter === 1 && btn.textContent === 'Gamma') ||
+      (filter === 2 && btn.textContent === 'Omega')
+    );
+  });
+  
+  renderMarketplace();
+}
+
+// Make functions available globally
+window.listNFT = listNFT;
+window.buyNFT = buyNFT;
+window.cancelListing = cancelListing;
+window.switchTab = switchTab;
+window.filterMarketplace = filterMarketplace;
+
+// ============================================
 // RECENT MINTS
 // ============================================
 
@@ -417,6 +814,8 @@ async function init() {
     state.address = account.address;
     updateWalletUI();
     loadContractData();
+    loadMyNFTs();
+    loadMarketplaceListings();
   }
 
   console.log('✅ NFTminimint ready!');

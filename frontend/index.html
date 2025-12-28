@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NFTminimint - Mint NFTs on Base</title>
+  <title>NFTminimint - Mint & Trade NFTs on Base</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
@@ -17,6 +17,11 @@
           <span class="logo-icon">🎨</span>
           <span class="logo-text">NFTminimint</span>
         </div>
+        <nav class="nav-tabs">
+          <button class="nav-tab active" data-tab="mint" onclick="switchTab('mint')">🎨 Mint</button>
+          <button class="nav-tab" data-tab="marketplace" onclick="switchTab('marketplace')">🛒 Marketplace</button>
+          <button class="nav-tab" data-tab="my-nfts" onclick="switchTab('my-nfts')">👤 My NFTs</button>
+        </nav>
         <div class="header-right">
           <span class="chain-badge">Base Mainnet</span>
           <button id="connectWallet" class="btn btn-primary">
@@ -28,108 +33,141 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <h1>Mint Unique NFTs on Base</h1>
-      <p>Three rarities. Tiny prices. Your collection starts here.</p>
+      <h1>Mint & Trade NFTs on Base</h1>
+      <p>Three rarities. Tiny prices. Buy & sell on the marketplace.</p>
       <div class="hero-stats">
         <div class="stat">
           <span class="stat-value" id="totalMinted">0</span>
           <span class="stat-label">Total Minted</span>
         </div>
         <div class="stat">
-          <span class="stat-value">0.00005</span>
-          <span class="stat-label">ETH Starting Price</span>
+          <span class="stat-value" id="totalListed">0</span>
+          <span class="stat-label">For Sale</span>
         </div>
         <div class="stat">
-          <span class="stat-value">1,600</span>
-          <span class="stat-label">Max Supply</span>
+          <span class="stat-value">0.00002</span>
+          <span class="stat-label">ETH Listing Price</span>
         </div>
       </div>
     </section>
 
-    <!-- Mint Cards -->
-    <section class="mint-section">
-      <h2 class="section-title">Choose Your Rarity</h2>
-      
-      <div class="mint-cards">
-        <!-- Alpha Card -->
-        <div class="mint-card alpha" data-rarity="0">
-          <div class="card-header">
-            <span class="rarity-badge alpha">ALPHA</span>
-            <span class="supply-badge">
-              <span id="alphaRemaining">1000</span>/1000
-            </span>
-          </div>
-          <div class="card-image">
-            <img src="https://picsum.photos/seed/alpha/300/300" alt="Alpha NFT">
-          </div>
-          <div class="card-content">
-            <h3>Alpha Collection</h3>
-            <p>Entry-level rarity. Perfect for starting your collection.</p>
-            <div class="price-row">
-              <span class="price">0.00005 ETH</span>
-              <span class="usd-price" id="alphaUsd">~$0.15</span>
+    <!-- Tab Content: Mint -->
+    <section id="mintTab" class="tab-content active">
+      <section class="mint-section">
+        <h2 class="section-title">Choose Your Rarity</h2>
+        
+        <div class="mint-cards">
+          <!-- Alpha Card -->
+          <div class="mint-card alpha" data-rarity="0">
+            <div class="card-header">
+              <span class="rarity-badge alpha">ALPHA</span>
+              <span class="supply-badge">
+                <span id="alphaRemaining">1000</span>/1000
+              </span>
             </div>
-            <button class="btn btn-mint" onclick="mintNFT(0)">
-              Mint Alpha
-            </button>
+            <div class="card-image">
+              <img src="https://picsum.photos/seed/alpha/300/300" alt="Alpha NFT">
+            </div>
+            <div class="card-content">
+              <h3>Alpha Collection</h3>
+              <p>Entry-level rarity. Perfect for starting your collection.</p>
+              <div class="price-row">
+                <span class="price">0.00005 ETH</span>
+                <span class="usd-price">~$0.15</span>
+              </div>
+              <button class="btn btn-mint" onclick="mintNFT(0)">
+                Mint Alpha
+              </button>
+            </div>
+          </div>
+
+          <!-- Gamma Card -->
+          <div class="mint-card gamma" data-rarity="1">
+            <div class="card-header">
+              <span class="rarity-badge gamma">GAMMA</span>
+              <span class="supply-badge">
+                <span id="gammaRemaining">500</span>/500
+              </span>
+            </div>
+            <div class="card-image">
+              <img src="https://picsum.photos/seed/gamma/300/300" alt="Gamma NFT">
+            </div>
+            <div class="card-content">
+              <h3>Gamma Collection</h3>
+              <p>Mid-tier rarity. For the discerning collector.</p>
+              <div class="price-row">
+                <span class="price">0.00006 ETH</span>
+                <span class="usd-price">~$0.18</span>
+              </div>
+              <button class="btn btn-mint" onclick="mintNFT(1)">
+                Mint Gamma
+              </button>
+            </div>
+          </div>
+
+          <!-- Omega Card -->
+          <div class="mint-card omega" data-rarity="2">
+            <div class="card-header">
+              <span class="rarity-badge omega">OMEGA</span>
+              <span class="supply-badge">
+                <span id="omegaRemaining">100</span>/100
+              </span>
+            </div>
+            <div class="card-image">
+              <img src="https://picsum.photos/seed/omega/300/300" alt="Omega NFT">
+            </div>
+            <div class="card-content">
+              <h3>Omega Collection</h3>
+              <p>Legendary rarity. The ultimate flex.</p>
+              <div class="price-row">
+                <span class="price">0.00007 ETH</span>
+                <span class="usd-price">~$0.21</span>
+              </div>
+              <button class="btn btn-mint" onclick="mintNFT(2)">
+                Mint Omega
+              </button>
+            </div>
           </div>
         </div>
+      </section>
 
-        <!-- Gamma Card -->
-        <div class="mint-card gamma" data-rarity="1">
-          <div class="card-header">
-            <span class="rarity-badge gamma">GAMMA</span>
-            <span class="supply-badge">
-              <span id="gammaRemaining">500</span>/500
-            </span>
-          </div>
-          <div class="card-image">
-            <img src="https://picsum.photos/seed/gamma/300/300" alt="Gamma NFT">
-          </div>
-          <div class="card-content">
-            <h3>Gamma Collection</h3>
-            <p>Mid-tier rarity. For the discerning collector.</p>
-            <div class="price-row">
-              <span class="price">0.00006 ETH</span>
-              <span class="usd-price" id="gammaUsd">~$0.18</span>
-            </div>
-            <button class="btn btn-mint" onclick="mintNFT(1)">
-              Mint Gamma
-            </button>
-          </div>
+      <!-- Recent Mints -->
+      <section class="recent-section">
+        <h2 class="section-title">Recent Mints</h2>
+        <div id="recentMints" class="recent-mints">
+          <p class="empty-state">No mints yet. Be the first!</p>
         </div>
+      </section>
+    </section>
 
-        <!-- Omega Card -->
-        <div class="mint-card omega" data-rarity="2">
-          <div class="card-header">
-            <span class="rarity-badge omega">OMEGA</span>
-            <span class="supply-badge">
-              <span id="omegaRemaining">100</span>/100
-            </span>
-          </div>
-          <div class="card-image">
-            <img src="https://picsum.photos/seed/omega/300/300" alt="Omega NFT">
-          </div>
-          <div class="card-content">
-            <h3>Omega Collection</h3>
-            <p>Legendary rarity. The ultimate flex.</p>
-            <div class="price-row">
-              <span class="price">0.00007 ETH</span>
-              <span class="usd-price" id="omegaUsd">~$0.21</span>
-            </div>
-            <button class="btn btn-mint" onclick="mintNFT(2)">
-              Mint Omega
-            </button>
-          </div>
+    <!-- Tab Content: Marketplace -->
+    <section id="marketplaceTab" class="tab-content">
+      <div class="marketplace-section">
+        <h2 class="section-title">🛒 NFT Marketplace</h2>
+        <p class="section-subtitle">Buy NFTs from other collectors at 0.00002 ETH each</p>
+        
+        <div class="marketplace-filters">
+          <button class="filter-btn active" onclick="filterMarketplace('all')">All</button>
+          <button class="filter-btn" onclick="filterMarketplace(0)">Alpha</button>
+          <button class="filter-btn" onclick="filterMarketplace(1)">Gamma</button>
+          <button class="filter-btn" onclick="filterMarketplace(2)">Omega</button>
+        </div>
+        
+        <div id="marketplaceGrid" class="marketplace-grid">
+          <p class="empty-state">No NFTs listed for sale yet.</p>
         </div>
       </div>
     </section>
 
-    <!-- Recent Mints -->
-    <section class="recent-section">
-      <h2 class="section-title">Recent Mints</h2>
-      <div id="recentMints" class="recent-mints">
-        <p class="empty-state">No mints yet. Be the first!</p>
+    <!-- Tab Content: My NFTs -->
+    <section id="myNftsTab" class="tab-content">
+      <div class="my-nfts-section">
+        <h2 class="section-title">👤 My NFTs</h2>
+        <p class="section-subtitle">Manage your collection - list for sale at 0.00002 ETH</p>
+        
+        <div id="myNftsGrid" class="my-nfts-grid">
+          <p class="empty-state">Connect wallet to see your NFTs.</p>
+        </div>
       </div>
     </section>
 
