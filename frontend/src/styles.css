@@ -15,3 +15,22 @@
     --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary));
     --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.3);
 }
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh;
+}
