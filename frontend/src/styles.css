@@ -466,3 +466,26 @@ a:hover { color: var(--secondary); }
     font-weight: 600;
     margin-bottom: 8px;
 }
+
+.nft-price {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.nft-price-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.nft-price-value {
+    font-size: 1rem;
+}
+
+.nft-eth-icon {
+    width: 16px;
+    height: 16px;
+}
