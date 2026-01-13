@@ -1543,3 +1543,40 @@ a:hover { color: var(--secondary); }
 .dropdown-item:hover {
     background: rgba(139, 92, 246, 0.1);
 }
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+}
+
+.avatar-lg {
+    width: 64px;
+    height: 64px;
+    font-size: 1.5rem;
+}
+
+.avatar-group {
+    display: flex;
+}
+
+.avatar-group .avatar {
+    margin-left: -12px;
+    border: 2px solid var(--bg-dark);
+}
+
+.avatar-group .avatar:first-child {
+    margin-left: 0;
+}
