@@ -1841,3 +1841,29 @@ a:hover { color: var(--secondary); }
 .nft-detail-creator-name {
     font-weight: 600;
 }
+
+.price-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.price-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.price-value {
+    font-size: 2rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price-usd {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
