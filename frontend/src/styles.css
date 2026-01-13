@@ -443,3 +443,26 @@ a:hover { color: var(--secondary); }
 .input::placeholder {
     color: var(--text-muted);
 }
+
+.nft-card {
+    position: relative;
+    background: var(--bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.nft-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.nft-info {
+    padding: 16px;
+}
+
+.nft-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
