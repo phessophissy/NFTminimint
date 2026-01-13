@@ -1416,3 +1416,27 @@ a:hover { color: var(--secondary); }
     transform: translateY(-50%);
     color: var(--text-muted);
 }
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    opacity: 0.5;
+}
+
+.empty-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.empty-description {
+    color: var(--text-muted);
+    max-width: 400px;
+    margin: 0 auto 24px;
+}
