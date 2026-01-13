@@ -1114,3 +1114,31 @@ a:hover { color: var(--secondary); }
     background: var(--primary);
     color: white;
 }
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(139, 92, 246, 0.2);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 26, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 400;
+}
+
+.loading-text {
+    margin-top: 16px;
+    color: var(--text-muted);
+}
