@@ -2086,3 +2086,29 @@ a:hover { color: var(--secondary); }
         grid-template-columns: 1fr;
     }
 }
+
+.nft-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.nft-detail-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.nft-detail-creator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nft-detail-creator-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.nft-detail-creator-name {
+    font-weight: 600;
+}
