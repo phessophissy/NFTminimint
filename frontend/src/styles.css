@@ -815,3 +815,32 @@ a:hover { color: var(--secondary); }
     font-size: 0.875rem;
     color: var(--text-muted);
 }
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 16px;
+}
+
+.tab {
+    padding: 12px 24px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab:hover {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--text-light);
+}
+
+.tab.active {
+    background: var(--primary);
+    color: white;
+}
