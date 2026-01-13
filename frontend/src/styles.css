@@ -2230,3 +2230,27 @@ a:hover { color: var(--secondary); }
     color: var(--text-muted);
     font-size: 0.875rem;
 }
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-stat {
+    text-align: center;
+}
+
+.profile-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.profile-stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
