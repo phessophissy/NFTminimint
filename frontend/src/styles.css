@@ -2790,3 +2790,17 @@ a:hover { color: var(--secondary); }
 
 .pointer-events-none { pointer-events: none; }
 .pointer-events-auto { pointer-events: auto; }
+
+@media print {
+    .no-print { display: none !important; }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
