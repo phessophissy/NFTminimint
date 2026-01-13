@@ -1627,3 +1627,24 @@ a:hover { color: var(--secondary); }
 .switch.active::after {
     transform: translateX(24px);
 }
+
+.marketplace {
+    padding: 120px 0 80px;
+}
+
+.marketplace-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+}
+
+.marketplace-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.marketplace-filters {
+    display: flex;
+    gap: 12px;
+}
