@@ -2518,3 +2518,23 @@ a:hover { color: var(--secondary); }
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
 }
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease;
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.4s ease;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+.hover-scale {
+    transition: transform 0.2s;
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+}
