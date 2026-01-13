@@ -2963,3 +2963,20 @@ a:hover { color: var(--secondary); }
         border: 1px solid #ddd;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-dark: #0a0a14;
+        --bg-darker: #050508;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
