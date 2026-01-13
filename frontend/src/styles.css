@@ -294,3 +294,19 @@ a:hover { color: var(--secondary); }
     max-width: 1400px;
     margin: 0 auto;
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+}
