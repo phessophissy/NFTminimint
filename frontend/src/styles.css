@@ -1506,3 +1506,40 @@ a:hover { color: var(--secondary); }
 .file-upload-text {
     color: var(--text-muted);
 }
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s;
+    z-index: 50;
+}
+
+.dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+    background: rgba(139, 92, 246, 0.1);
+}
