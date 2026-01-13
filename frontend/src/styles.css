@@ -872,3 +872,28 @@ a:hover { color: var(--secondary); }
     margin-top: 16px;
     color: var(--text-muted);
 }
+
+.skeleton {
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.05) 25%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0.05) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+    height: 320px;
+    border-radius: 16px;
+}
+
+.skeleton-text {
+    height: 16px;
+    margin-bottom: 8px;
+}
