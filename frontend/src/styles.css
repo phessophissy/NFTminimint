@@ -342,3 +342,27 @@ a:hover { color: var(--secondary); }
     background: var(--primary);
     border-radius: 1px;
 }
+
+.wallet-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.wallet-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+}
+
+.wallet-address {
+    font-family: monospace;
+    font-size: 0.875rem;
+}
