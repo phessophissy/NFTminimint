@@ -1580,3 +1580,20 @@ a:hover { color: var(--secondary); }
 .avatar-group .avatar:first-child {
     margin-left: 0;
 }
+
+.progress {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-sm { height: 4px; }
+.progress-lg { height: 12px; }
