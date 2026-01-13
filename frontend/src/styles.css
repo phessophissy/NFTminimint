@@ -3027,3 +3027,11 @@ a:hover { color: var(--secondary); }
 .self-start { align-self: flex-start; }
 .self-center { align-self: center; }
 .self-end { align-self: flex-end; }
+
+.transition { transition: all 0.2s ease; }
+.transition-fast { transition: all 0.15s ease; }
+.transition-slow { transition: all 0.3s ease; }
+.transition-none { transition: none; }
+
+.transform-gpu { transform: translateZ(0); }
+.backface-hidden { backface-visibility: hidden; }
