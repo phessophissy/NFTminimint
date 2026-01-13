@@ -1983,3 +1983,26 @@ a:hover { color: var(--secondary); }
     font-size: 0.875rem;
     color: var(--text-muted);
 }
+
+.footer {
+    padding: 64px 0 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 80px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.footer-description {
+    color: var(--text-muted);
+    margin-top: 16px;
+    line-height: 1.7;
+}
