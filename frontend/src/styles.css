@@ -2061,3 +2061,28 @@ a:hover { color: var(--secondary); }
     background: var(--primary);
     color: white;
 }
+
+.nft-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding: 120px 0 80px;
+}
+
+.nft-detail-image {
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--bg-card);
+}
+
+.nft-detail-image img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .nft-detail {
+        grid-template-columns: 1fr;
+    }
+}
