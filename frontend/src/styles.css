@@ -2138,3 +2138,34 @@ a:hover { color: var(--secondary); }
     color: var(--text-muted);
     font-weight: 400;
 }
+
+.attributes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.attribute {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+.attribute-type {
+    font-size: 0.75rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.attribute-value {
+    font-weight: 600;
+}
+
+.attribute-rarity {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
