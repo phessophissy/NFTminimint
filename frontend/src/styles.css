@@ -2899,3 +2899,20 @@ a:hover { color: var(--secondary); }
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
 }
+
+.list {
+    list-style: none;
+}
+
+.list-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item-hover:hover {
+    background: rgba(139, 92, 246, 0.05);
+}
