@@ -2849,3 +2849,13 @@ a:hover { color: var(--secondary); }
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-dark);
 }
+
+::selection {
+    background: var(--primary);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--primary);
+    color: white;
+}
