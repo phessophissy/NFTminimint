@@ -391,3 +391,34 @@ a:hover { color: var(--secondary); }
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    line-height: 1.7;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 64px;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
