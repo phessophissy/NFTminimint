@@ -2620,3 +2620,15 @@ a:hover { color: var(--secondary); }
 .bg-secondary { background: var(--secondary); }
 .bg-dark { background: var(--bg-dark); }
 .bg-card { background: var(--bg-card); }
+
+.rounded-none { border-radius: 0; }
+.rounded-sm { border-radius: 4px; }
+.rounded { border-radius: 8px; }
+.rounded-md { border-radius: 12px; }
+.rounded-lg { border-radius: 16px; }
+.rounded-xl { border-radius: 20px; }
+.rounded-full { border-radius: 9999px; }
+
+.border { border: 1px solid rgba(255, 255, 255, 0.1); }
+.border-primary { border-color: var(--primary); }
+.border-secondary { border-color: var(--secondary); }
