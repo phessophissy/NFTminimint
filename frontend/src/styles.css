@@ -3035,3 +3035,20 @@ a:hover { color: var(--secondary); }
 
 .transform-gpu { transform: translateZ(0); }
 .backface-hidden { backface-visibility: hidden; }
+
+/* ============================================
+   NFTminimint Marketplace Styles
+   ============================================
+   A comprehensive CSS framework for NFT marketplace
+   Built on Base Chain (Chain ID: 8453)
+   
+   Features:
+   - NFT cards, badges, and pricing
+   - Marketplace grid and filters
+   - Wallet connection UI
+   - Modal and toast components
+   - Animation utilities
+   - Responsive design
+   - Dark mode support
+   - Accessibility features
+   ============================================ */
