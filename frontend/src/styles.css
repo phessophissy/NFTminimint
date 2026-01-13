@@ -2169,3 +2169,39 @@ a:hover { color: var(--secondary); }
     color: var(--text-muted);
     margin-top: 4px;
 }
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: var(--bg-card);
+    border-radius: 12px;
+}
+
+.history-event {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.history-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-time {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
