@@ -2821,3 +2821,13 @@ a:hover { color: var(--secondary); }
         transition-duration: 0.01ms !important;
     }
 }
+
+@media (max-width: 768px) {
+    .hide-mobile { display: none !important; }
+    .show-mobile { display: block !important; }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop { display: none !important; }
+    .show-desktop { display: block !important; }
+}
