@@ -1136,3 +1136,4 @@ button {
 .bounce-gold { animation: bounceGold 1s ease infinite; }
 .gold-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 215, 0, 0.05); pointer-events: none; }
 .text-uppercase-gold { text-transform: uppercase; letter-spacing: 3px; color: #FFD700; }
+@keyframes slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
