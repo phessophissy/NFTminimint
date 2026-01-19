@@ -1108,3 +1108,4 @@ button {
 @keyframes pulseGold { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 .pulse-gold { animation: pulseGold 2s infinite; }
 .bg-black-deep { background: #050505; }
+.bg-black-rich { background: #0a0a0a; }
