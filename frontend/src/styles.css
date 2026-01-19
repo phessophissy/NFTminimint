@@ -1160,3 +1160,4 @@ button {
 .wobble { animation: wobble 0.5s ease-in-out; }
 .gold-progress-bar { height: 4px; background: #1a1a1a; border-radius: 2px; overflow: hidden; }
 .gold-progress-bar-fill { height: 100%; background: linear-gradient(90deg, #B8860B, #FFD700); transition: width 0.3s ease; }
+@keyframes glitter { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
