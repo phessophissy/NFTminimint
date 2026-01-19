@@ -1155,3 +1155,4 @@ button {
 .swing-in { animation: swingIn 0.5s ease-out forwards; transform-origin: top center; }
 .gold-tooltip { position: relative; cursor: help; }
 .gold-tooltip::after { content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); padding: 8px 12px; background: #FFD700; color: #000; border-radius: 4px; font-size: 0.75rem; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; }
+.gold-tooltip:hover::after { opacity: 1; visibility: visible; }
