@@ -1092,3 +1092,5 @@ button {
 .bg-black-gradient { background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%); }
 
 .gold-underline { border-bottom: 2px solid #FFD700; padding-bottom: 4px; }
+
+.hover-gold:hover { color: #FFD700; transition: color 0.3s ease; }
