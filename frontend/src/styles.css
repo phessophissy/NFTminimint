@@ -1115,3 +1115,4 @@ button {
 @keyframes rotateGold { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .rotate-gold { animation: rotateGold 3s linear infinite; }
 .gold-gradient-text { background: linear-gradient(90deg, #FFD700, #B8860B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.black-card-elevated { background: #1a1a1a; border: 1px solid rgba(255, 215, 0, 0.2); }
