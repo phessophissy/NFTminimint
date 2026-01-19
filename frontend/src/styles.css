@@ -1104,3 +1104,4 @@ button {
 .gold-underline { border-bottom: 2px solid #FFD700; padding-bottom: 4px; }
 .hover-gold:hover { color: #FFD700; transition: color 0.3s ease; }
 .gold-text-shadow { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+.gold-border-glow { border: 2px solid #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
