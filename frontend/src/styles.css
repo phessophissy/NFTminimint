@@ -1162,3 +1162,4 @@ button {
 .gold-progress-bar-fill { height: 100%; background: linear-gradient(90deg, #B8860B, #FFD700); transition: width 0.3s ease; }
 @keyframes glitter { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 .glitter { animation: glitter 1.5s ease-in-out infinite; }
+.gold-input { background: #0a0a0a; border: 1px solid #333; color: #F7E7CE; padding: 12px 16px; border-radius: 8px; transition: border-color 0.3s; }
