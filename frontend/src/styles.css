@@ -1181,3 +1181,4 @@ button {
 @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
 .breathe { animation: breathe 3s ease-in-out infinite; }
 .gold-avatar { width: 48px; height: 48px; border-radius: 50%; border: 2px solid #FFD700; object-fit: cover; }
+.gold-avatar-lg { width: 80px; height: 80px; border-width: 3px; }
