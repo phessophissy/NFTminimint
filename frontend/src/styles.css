@@ -1039,3 +1039,15 @@ button {
         display: none;
     }
 }
+/* Additional Gold Animation - Wave Effect */
+@keyframes goldWave {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gold-wave {
+    background: linear-gradient(270deg, #FFD700, #B8860B, #FFD700, #D4AF37);
+    background-size: 400% 400%;
+    animation: goldWave 8s ease infinite;
+}
