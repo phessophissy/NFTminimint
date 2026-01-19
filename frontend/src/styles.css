@@ -1149,3 +1149,4 @@ button {
 .gold-icon { color: #FFD700; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5)); }
 @keyframes flipIn { from { transform: perspective(400px) rotateY(90deg); opacity: 0; } to { transform: perspective(400px) rotateY(0); opacity: 1; } }
 .flip-in { animation: flipIn 0.6s ease-out forwards; }
+.gold-highlight { background: linear-gradient(to right, transparent 0%, rgba(255, 215, 0, 0.2) 50%, transparent 100%); }
