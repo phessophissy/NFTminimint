@@ -1165,3 +1165,4 @@ button {
 .gold-input { background: #0a0a0a; border: 1px solid #333; color: #F7E7CE; padding: 12px 16px; border-radius: 8px; transition: border-color 0.3s; }
 .gold-input:focus { border-color: #FFD700; outline: none; box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2); }
 @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+.typewriter { overflow: hidden; white-space: nowrap; animation: typewriter 2s steps(40) forwards; }
