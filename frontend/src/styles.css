@@ -1109,3 +1109,4 @@ button {
 .pulse-gold { animation: pulseGold 2s infinite; }
 .bg-black-deep { background: #050505; }
 .bg-black-rich { background: #0a0a0a; }
+.gold-underline { border-bottom: 2px solid #FFD700; }
