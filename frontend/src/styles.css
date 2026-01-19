@@ -1173,3 +1173,4 @@ button {
 .gold-radio { appearance: none; width: 20px; height: 20px; border: 2px solid #D4AF37; border-radius: 50%; cursor: pointer; }
 .gold-radio:checked { background: radial-gradient(circle, #FFD700 40%, transparent 40%); }
 @keyframes morphGold { 0% { border-radius: 50%; } 50% { border-radius: 8px; } 100% { border-radius: 50%; } }
+.morph-gold { animation: morphGold 2s ease-in-out infinite; }
