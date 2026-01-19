@@ -1126,3 +1126,4 @@ button {
 .bg-black-rich { background: #0a0a0a; }
 .gold-underline { border-bottom: 2px solid #FFD700; }
 .hover-gold:hover { color: #FFD700; }
+.hover-scale-gold:hover { transform: scale(1.05); }
