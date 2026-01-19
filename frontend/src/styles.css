@@ -1143,3 +1143,4 @@ button {
 .gold-link { color: #D4AF37; text-decoration: none; transition: color 0.3s ease; }
 .gold-link:hover { color: #FFD700; text-decoration: underline; }
 .gold-badge { display: inline-block; padding: 4px 12px; background: linear-gradient(135deg, #B8860B, #FFD700); color: #000; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+@keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
