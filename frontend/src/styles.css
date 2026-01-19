@@ -1131,3 +1131,4 @@ button {
 .rotate-gold { animation: rotateGold 3s linear infinite; }
 .gold-gradient-text { background: linear-gradient(90deg, #FFD700, #B8860B); -webkit-background-clip: text; }
 .black-card-elevated { background: #1a1a1a; border: 1px solid rgba(255, 215, 0, 0.2); }
+.gold-divider { height: 1px; background: linear-gradient(90deg, transparent, #FFD700, transparent); }
