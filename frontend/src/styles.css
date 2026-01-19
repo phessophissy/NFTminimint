@@ -1153,3 +1153,4 @@ button {
 .black-matte { background: #0a0a0a; border: 1px solid #1a1a1a; }
 @keyframes swingIn { from { transform: rotate(-15deg); opacity: 0; } to { transform: rotate(0); opacity: 1; } }
 .swing-in { animation: swingIn 0.5s ease-out forwards; transform-origin: top center; }
+.gold-tooltip { position: relative; cursor: help; }
