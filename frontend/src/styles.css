@@ -1166,3 +1166,4 @@ button {
 .gold-input:focus { border-color: #FFD700; outline: none; box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2); }
 @keyframes typewriter { from { width: 0; } to { width: 100%; } }
 .typewriter { overflow: hidden; white-space: nowrap; animation: typewriter 2s steps(40) forwards; }
+.gold-checkbox { appearance: none; width: 20px; height: 20px; border: 2px solid #D4AF37; border-radius: 4px; cursor: pointer; }
