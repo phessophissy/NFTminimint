@@ -1168,3 +1168,4 @@ button {
 .typewriter { overflow: hidden; white-space: nowrap; animation: typewriter 2s steps(40) forwards; }
 .gold-checkbox { appearance: none; width: 20px; height: 20px; border: 2px solid #D4AF37; border-radius: 4px; cursor: pointer; }
 .gold-checkbox:checked { background: #FFD700; border-color: #FFD700; }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
