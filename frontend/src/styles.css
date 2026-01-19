@@ -1152,3 +1152,4 @@ button {
 .gold-highlight { background: linear-gradient(to right, transparent 0%, rgba(255, 215, 0, 0.2) 50%, transparent 100%); }
 .black-matte { background: #0a0a0a; border: 1px solid #1a1a1a; }
 @keyframes swingIn { from { transform: rotate(-15deg); opacity: 0; } to { transform: rotate(0); opacity: 1; } }
+.swing-in { animation: swingIn 0.5s ease-out forwards; transform-origin: top center; }
