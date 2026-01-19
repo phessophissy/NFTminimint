@@ -1112,3 +1112,4 @@ button {
 .gold-underline { border-bottom: 2px solid #FFD700; }
 .hover-gold:hover { color: #FFD700; }
 .hover-scale-gold:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+@keyframes rotateGold { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
