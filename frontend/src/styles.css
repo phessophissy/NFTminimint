@@ -1146,3 +1146,4 @@ button {
 @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .zoom-in { animation: zoomIn 0.5s ease-out forwards; }
 .gold-ring { border: 2px solid #FFD700; border-radius: 50%; }
+.gold-icon { color: #FFD700; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5)); }
