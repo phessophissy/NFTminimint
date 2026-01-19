@@ -1074,3 +1074,11 @@ button {
                 0 0 60px rgba(255, 215, 0, 0.4),
                 0 0 90px rgba(255, 215, 0, 0.2);
 }
+
+/* Luxury Gold Glow Effect */
+.gold-glow {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.2),
+                0 0 60px rgba(255, 215, 0, 0.1);
+}
+
