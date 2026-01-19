@@ -1119,3 +1119,4 @@ button {
 .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, #FFD700, transparent); }
 @keyframes bounceGold { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .bounce-gold { animation: bounceGold 1s ease infinite; }
+.gold-border-glow { border: 2px solid #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
