@@ -1134,3 +1134,4 @@ button {
 .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, #FFD700, transparent); }
 @keyframes bounceGold { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .bounce-gold { animation: bounceGold 1s ease infinite; }
+.gold-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 215, 0, 0.05); pointer-events: none; }
