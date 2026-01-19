@@ -1096,3 +1096,4 @@ button {
 .hover-gold:hover { color: #FFD700; transition: color 0.3s ease; }
 
 @keyframes rotateGold { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .rotate-gold { animation: rotateGold 3s linear infinite; }
+.gold-text-shadow { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
