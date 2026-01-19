@@ -1100,3 +1100,4 @@ button {
 .gold-border-glow { border: 2px solid #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
 @keyframes pulseGold { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 .pulse-gold { animation: pulseGold 2s infinite; }
+.bg-black-gradient { background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%); }
