@@ -1094,3 +1094,5 @@ button {
 .gold-underline { border-bottom: 2px solid #FFD700; padding-bottom: 4px; }
 
 .hover-gold:hover { color: #FFD700; transition: color 0.3s ease; }
+
+@keyframes rotateGold { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .rotate-gold { animation: rotateGold 3s linear infinite; }
