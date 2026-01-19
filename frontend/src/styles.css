@@ -1128,3 +1128,4 @@ button {
 .hover-gold:hover { color: #FFD700; }
 .hover-scale-gold:hover { transform: scale(1.05); }
 @keyframes rotateGold { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.rotate-gold { animation: rotateGold 3s linear infinite; }
