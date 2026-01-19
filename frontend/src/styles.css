@@ -1141,3 +1141,4 @@ button {
 @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 .slide-in-right { animation: slideInRight 0.6s ease-out forwards; }
 .gold-link { color: #D4AF37; text-decoration: none; transition: color 0.3s ease; }
+.gold-link:hover { color: #FFD700; text-decoration: underline; }
