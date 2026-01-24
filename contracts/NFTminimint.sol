@@ -38,6 +38,7 @@ contract NFTminimint is ERC721, ERC721URIStorage, Ownable, ReentrancyGuard {
     
     // Mapping from token ID to rarity
     mapping(uint256 => Rarity) public tokenRarity;
+    mapping(uint256 => string) private _tokenURIs;
     
     // Base URI for metadata
     string private _baseTokenURI;
@@ -164,6 +165,11 @@ contract NFTminimint is ERC721, ERC721URIStorage, Ownable, ReentrancyGuard {
     function setBaseURI(string memory baseURI) external onlyOwner {
         _baseTokenURI = baseURI;
     }
+
+    function setTokenURI(uint256 tokenId, string memory _tokenURI) external onlyOwner {
+    require(_exists(tokenId), "Token does not exist");
+    _setTokenURI(tokenId, _tokenURI);
+     }
     
     /**
      * @dev Withdraw contract balance
